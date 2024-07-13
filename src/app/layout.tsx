@@ -26,7 +26,7 @@ export default function RootLayout({
         className={`${inter.className} antialiased`}
       >
         <NavbarPage />
-        <main className="relative h-[89vh]">
+        <main className="relative min-h-[89vh]">
           {children}
         </main>
         <FooterPage />
