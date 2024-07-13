@@ -18,16 +18,16 @@ const customNavbarTheme: DeepPartial<FlowbiteNavbarTheme> = {
 
 const NavbarPage = () => (
   <Navbar theme={customNavbarTheme} rounded>
-    <NavbarBrand as={Link} href="https://flowbite-react.com">
+    <NavbarBrand as={Link} href="/">
       <Image
-        src="images/next.svg"
-        className="mr-3 h-6 sm:h-9"
-        alt="Flowbite React Logo"
-        width={80}
+        src="/images/logo.jpg"
+        className="rounded mr-3 h-6 sm:h-9"
+        alt="Home page"
+        width={50}
         height={80}
       />
       <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-        w/Flowbite React
+        Rick and Morty Wiki
       </span>
     </NavbarBrand>
     <NavbarToggle />
@@ -35,15 +35,15 @@ const NavbarPage = () => (
       <NavbarLink as={Link} href="/">
         Home
       </NavbarLink>
-      <NavbarLink as={Link} href="/sandbox">
-        Sandbox
+      <NavbarLink as={Link} href="/characters">
+        Characters
       </NavbarLink>
-      <NavbarLink as={Link} href="/about">
-        About
+      <NavbarLink as={Link} href="/episodes">
+        Episodes
       </NavbarLink>
-      <NavbarLink as={Link} href="/#services">Services</NavbarLink>
-      <NavbarLink as={Link} href="/#pricing">Pricing</NavbarLink>
-      <NavbarLink as={Link}  href="/#contact">Contact</NavbarLink>
+      <NavbarLink as={Link} href="/locations">
+        Locations
+      </NavbarLink>
     </NavbarCollapse>
   </Navbar>
 );
