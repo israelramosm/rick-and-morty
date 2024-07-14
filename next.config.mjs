@@ -26,8 +26,6 @@ const nextConfig = (phase, { defaultConfig }) => {
     /* config options for all phases except development here */
     ...config,
     images: {
-      loader: 'custom',
-      loaderFile: './imageLoader.js',
       remotePatterns,
     },
   };
