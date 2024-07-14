@@ -8,7 +8,7 @@ export default function Home() {
       <PageHeader title="Home" />
       <div className="relative w-48 h-48">
         <Image
-          src="/images/characters.jpg"
+          src="images/characters.jpg"
           className="rounded"
           alt="Home page"
           sizes="(max-width:20rem) 20rem"
@@ -17,7 +17,7 @@ export default function Home() {
       </div>
       <div className="relative w-48 h-48">
         <Image
-          src="/images/locations.jpg"
+          src="images/locations.jpg"
           className="rounded"
           alt="Home page"
           sizes="(max-width:50rem) 50rem"
@@ -26,7 +26,7 @@ export default function Home() {
       </div>
       <div className="relative w-48 h-48">
         <Image
-          src="/images/episodes.jpg"
+          src="images/episodes.jpg"
           className="rounded"
           alt="Home page"
           sizes="(max-width:50rem) 50rem"
