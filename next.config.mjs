@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
 
-const basePath =
-  process.env.NODE_ENV === "production" ? "/rick-and-morty" : "";
+const { NODE_ENV, BASE_PATH } = process.env;
+
+console.log({NODE_ENV, BASE_PATH});
 
 const nextConfig = {
-  basePath,
+  basePath: BASE_PATH,
   images: {
     remotePatterns: [
       {
