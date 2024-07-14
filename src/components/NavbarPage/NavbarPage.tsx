@@ -20,7 +20,7 @@ const NavbarPage = () => (
   <Navbar theme={customNavbarTheme} rounded>
     <NavbarBrand as={Link} href="/">
       <Image
-        src="/images/logo.jpg"
+        src="images/logo.jpg"
         className="rounded mr-3 h-6 sm:h-9"
         alt="Home page"
         width={50}
