@@ -1,8 +1,10 @@
 /** @type {import('next').NextConfig} */
-const output = process.env.NODE_ENV === "development" ? undefined : "export";
+
+const assetPrefix =
+  process.env.NODE_ENV === "production" ? "/rick-and-morty" : "";
 
 const nextConfig = {
-  output,
+  assetPrefix,
   images: {
     remotePatterns: [
       {
