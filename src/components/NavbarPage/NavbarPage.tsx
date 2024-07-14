@@ -1,3 +1,4 @@
+import { IMAGE_PATH } from "@/src/util/constants";
 import { DeepPartial } from "@/src/util/types";
 import {
   FlowbiteNavbarTheme,
@@ -23,7 +24,7 @@ const NavbarPage = () => (
   <Navbar theme={customNavbarTheme} rounded>
     <NavbarBrand as={Link} href="/">
       <Image
-        src="images/logo.jpg"
+        src={`${IMAGE_PATH}/images/logo.jpg`}
         className="rounded"
         alt="Home page"
         sizes="(max-width: 2.25rem) 2.25rem"

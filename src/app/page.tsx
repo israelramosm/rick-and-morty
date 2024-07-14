@@ -1,6 +1,7 @@
 import Image from "next/image";
 import PageHeader from "../components/PageHeader/PageHeader";
 import Section from "../components/Section/Section";
+import { IMAGE_PATH } from "../util/constants";
 
 export default function Home() {
   return (
@@ -8,7 +9,7 @@ export default function Home() {
       <PageHeader title="Home" />
       <div className="relative w-48 h-48">
         <Image
-          src="images/characters.jpg"
+          src={`${IMAGE_PATH}/images/characters.jpg`}
           className="rounded"
           alt="Home page"
           sizes="(max-width:20rem) 20rem"
@@ -17,7 +18,7 @@ export default function Home() {
       </div>
       <div className="relative w-48 h-48">
         <Image
-          src="images/locations.jpg"
+          src={`${IMAGE_PATH}/images/locations.jpg`}
           className="rounded"
           alt="Home page"
           sizes="(max-width:50rem) 50rem"
@@ -26,7 +27,7 @@ export default function Home() {
       </div>
       <div className="relative w-48 h-48">
         <Image
-          src="images/episodes.jpg"
+          src={`${IMAGE_PATH}/images/episodes.jpg`}
           className="rounded"
           alt="Home page"
           sizes="(max-width:50rem) 50rem"
