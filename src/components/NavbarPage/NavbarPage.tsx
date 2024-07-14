@@ -1,3 +1,5 @@
+'use-client'
+
 import { DeepPartial } from "@/src/util/types";
 import {
   FlowbiteNavbarTheme,
