@@ -27,6 +27,7 @@ const NavbarPage = () => (
         src="/images/logo.jpg"
         className="rounded"
         alt="Home page"
+        sizes="(max-width: 2.25rem) 2.25rem"
         fill
       />
       <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white ml-12">
