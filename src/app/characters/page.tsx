@@ -1,5 +1,4 @@
 "use client";
-
 import { InfoCard } from "@/src/components/InfoCard/InfoCard";
 import ShowCardEpisodes from "@/src/components/InfoCard/ShowCardEpisodes";
 import ShowCardLocation from "@/src/components/InfoCard/ShowCardLocation";

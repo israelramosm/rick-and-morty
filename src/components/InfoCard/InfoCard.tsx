@@ -1,5 +1,3 @@
-"use client";
-
 import { Card } from "flowbite-react";
 import Image from "next/image";
 import { ReactNode } from "react";
