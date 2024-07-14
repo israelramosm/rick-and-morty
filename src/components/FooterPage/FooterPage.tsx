@@ -2,7 +2,6 @@ import { DeepPartial } from "@/src/util/types";
 import {
   FlowbiteFooterTheme,
   Footer,
-  FooterCopyright,
   FooterLink,
   FooterLinkGroup,
 } from "flowbite-react";
