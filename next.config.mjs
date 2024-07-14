@@ -12,7 +12,7 @@ const remotePatterns = [
 ];
 
 const nextConfig = {
-  /* config options for all phases except development here */
+  basePath: isProd ? "/rick-and-morty" : undefined,
   assetPrefix: isProd
     ? "https://israelramosm.github.io/rick-and-morty"
     : undefined,
