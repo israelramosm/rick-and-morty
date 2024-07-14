@@ -1,4 +1,6 @@
-const PHASE_DEVELOPMENT_SERVER = require("next/constants.js");
+/** @type {import('next').NextConfig} */
+
+const isProd = process.env.NODE_ENV === "production";
 
 const remotePatterns = [
   {
@@ -9,23 +11,14 @@ const remotePatterns = [
   },
 ];
 
-module.exports = (phase, { defaultConfig }) => {
-  const config = {};
-  if (phase === PHASE_DEVELOPMENT_SERVER) {
-    return {
-      /* development only config options here */
-      ...config,
-      images: {
-        remotePatterns,
-      },
-    };
-  }
-
-  return {
-    /* config options for all phases except development here */
-    ...config,
-    images: {
-      remotePatterns,
-    },
-  };
+const nextConfig = {
+  /* config options for all phases except development here */
+  assetPrefix: isProd
+    ? "https://israelramosm.github.io/rick-and-morty"
+    : undefined,
+  images: {
+    remotePatterns,
+  },
 };
+
+export default nextConfig;
