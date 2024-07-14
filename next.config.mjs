@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
 
-const { BASE_PATH } = process.env;
+const { IMAGE_PATH } = process.env;
 
 const nextConfig = {
-  basePath: BASE_PATH,
   images: {
+    path: IMAGE_PATH,
     remotePatterns: [
       {
         protocol: "https",
