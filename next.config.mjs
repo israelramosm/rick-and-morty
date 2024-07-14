@@ -11,9 +11,7 @@ const remotePatterns = [
 ];
 
 const nextConfig = (phase, { defaultConfig }) => {
-  const config = {
-
-  };
+  const config = {};
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
       /* development only config options here */
@@ -29,7 +27,7 @@ const nextConfig = (phase, { defaultConfig }) => {
     ...config,
     images: {
       loader: 'custom',
-      loaderFile: './imageLoader',
+      loaderFile: './imageLoader.js',
       remotePatterns,
     },
   };
