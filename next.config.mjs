@@ -1,8 +1,6 @@
 /** @type {import('next').NextConfig} */
 
-const { NODE_ENV, BASE_PATH } = process.env;
-
-console.log({NODE_ENV, BASE_PATH});
+const { BASE_PATH } = process.env;
 
 const nextConfig = {
   basePath: BASE_PATH,
