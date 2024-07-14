@@ -12,23 +12,26 @@ const remotePatterns = [
 
 const nextConfig = (phase, { defaultConfig }) => {
   const config = {
-    images: {
-      remotePatterns,
-    },
+
   };
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
       /* development only config options here */
       ...config,
+      images: {
+        remotePatterns,
+      },
     };
   }
 
   return {
     /* config options for all phases except development here */
     ...config,
-    basePath: "/rick-and-morty",
-    output: "export",
-    reactStrictMode: true,
+    images: {
+      loader: 'custom',
+      loaderFile: './imageLoader',
+      remotePatterns,
+    },
   };
 };
 
