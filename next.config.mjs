@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-import { PHASE_DEVELOPMENT_SERVER } from "next/constants.js";
+const PHASE_DEVELOPMENT_SERVER = require("next/constants.js");
 
 const remotePatterns = [
   {
@@ -10,7 +10,7 @@ const remotePatterns = [
   },
 ];
 
-const nextConfig = (phase, { defaultConfig }) => {
+module.exports = (phase, { defaultConfig }) => {
   const config = {};
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
@@ -30,5 +30,3 @@ const nextConfig = (phase, { defaultConfig }) => {
     },
   };
 };
-
-export default nextConfig;
