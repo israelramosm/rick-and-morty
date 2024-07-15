@@ -1,4 +1,5 @@
 import { IMAGE_PATH } from "@/src/util/constants";
+import ROUTES from "@/src/util/routes";
 import { DeepPartial } from "@/src/util/types";
 import {
   FlowbiteNavbarTheme,
@@ -16,8 +17,8 @@ const customNavbarTheme: DeepPartial<FlowbiteNavbarTheme> = {
     base: "p-4 dark:bg-gray-800 md:flex md:items-center md:justify-between",
   },
   brand: {
-    base: 'relative w-[2.25rem]'
-  }
+    base: "relative w-[2.25rem]",
+  },
 };
 
 const NavbarPage = () => (
@@ -36,18 +37,11 @@ const NavbarPage = () => (
     </NavbarBrand>
     <NavbarToggle />
     <NavbarCollapse>
-      <NavbarLink as={Link} href="/">
-        Home
-      </NavbarLink>
-      <NavbarLink as={Link} href="/characters">
-        Characters
-      </NavbarLink>
-      <NavbarLink as={Link} href="/episodes">
-        Episodes
-      </NavbarLink>
-      <NavbarLink as={Link} href="/locations">
-        Locations
-      </NavbarLink>
+      {Object.values(ROUTES).map(({ name, url }, i) => (
+        <NavbarLink key={i} as={Link} href={url}>
+          {name}
+        </NavbarLink>
+      ))}
     </NavbarCollapse>
   </Navbar>
 );

@@ -10,7 +10,7 @@ const Section = ({
   className?: string;
 }>) => {
   return (
-    <section id={id} className={`mx-auto container border-solid border-2 w-full px-4 lg:px-0 ${className}`}>
+    <section id={id} className={`mx-auto container border-solid border-2 w-full md:px-4 lg:px-0 ${className}`}>
       {children}
     </section>
   );
