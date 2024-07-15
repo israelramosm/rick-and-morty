@@ -19,6 +19,12 @@ const sectionData = [
   },
 ];
 
+const theme = {
+  root: {
+    children: "flex h-full flex-col justify-end items-end gap-4 p-6",
+  },
+};
+
 export function MainPageSection() {
   return (
     <div className="flex flex-wrap justify-evenly items-center">
@@ -30,6 +36,7 @@ export function MainPageSection() {
         >
           <Card
             className="relative w-48 h-48 md:w-80 md:h-80 rounded hover:scale-75"
+            theme={theme}
             renderImage={() => (
               <Image
                 className="rounded"
@@ -39,7 +46,11 @@ export function MainPageSection() {
                 fill
               />
             )}
-          ></Card>
+          >
+            <h5 className="text-2xl font-bold tracking-tight text-white dark:text-white z-10">
+              {alt}
+            </h5>
+          </Card>
         </Link>
       ))}
     </div>
