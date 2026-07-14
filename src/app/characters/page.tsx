@@ -23,7 +23,6 @@ export default function Characters() {
     [key: string]: string | number;
   }) => {
     try {
-      setLoading(true);
       const { data } = await axios.get<RickAndMortyAPIResponse<CharacterI>>(
         "https://rickandmortyapi.com/api/character",
         { params }
@@ -49,11 +48,16 @@ export default function Characters() {
     const params = {
       page,
     };
+    setLoading(true);
     setCurrentPage(page);
     fethCharacters(params);
   };
 
   useEffect(() => {
+    // Client-side data fetch on mount. setState only runs after the async
+    // request resolves (never synchronously), so it cannot trigger a render
+    // loop; the set-state-in-effect rule over-reports this valid pattern.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fethCharacters();
   }, []);
 

@@ -1,3 +1,4 @@
+"use client";
 import { IMAGE_PATH } from "@/src/util/constants";
 import ROUTES from "@/src/util/routes";
 import { DeepPartial } from "@/src/util/types";
