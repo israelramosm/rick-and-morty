@@ -1,3 +1,4 @@
+"use client";
 import { IMAGE_PATH } from "@/src/util/constants";
 import ROUTES from "@/src/util/routes";
 import { Card } from "flowbite-react";
@@ -35,11 +36,11 @@ export function MainPageSection() {
           href={ROUTES[alt.toLowerCase()].url}
         >
           <Card
-            className="relative w-48 h-48 md:w-80 md:h-80 rounded hover:scale-75"
+            className="relative w-48 h-48 md:w-80 md:h-80 rounded-sm hover:scale-75"
             theme={theme}
             renderImage={() => (
               <Image
-                className="rounded"
+                className="rounded-sm"
                 src={`${IMAGE_PATH}/images${image}`}
                 alt={alt}
                 sizes="(max-width:50rem) 50rem"

@@ -1,29 +1,65 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@import 'flowbite-react/plugin/tailwindcss';
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@source '../../.flowbite-react/class-list.json';
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  --font-*: initial;
+  --font-sans: Graphik, sans-serif;
+  --font-serif: Merriweather, serif;
+
+  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+  --background-image-gradient-conic: conic-gradient(
+    from 180deg at 50% 50%,
+    var(--tw-gradient-stops)
+  );
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
   }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility portal {
+  @apply hover:bg-linear-to-r hover:from-[#88e23b] hover:via-[#acfa70] hover:via-30% hover:via-[#69e882] hover:via-50% hover:via-[#acfa70] hover:via-70% hover:to-[#88e23b] hover:shadow-xl hover:shadow-[#88e23b];
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  :root {
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
   }
-}
 
-@layer components {
-  .portal {
-    @apply hover:bg-gradient-to-r hover:from-[#88e23b] hover:via-[#acfa70] hover:via-30% hover:via-[#69e882] hover:via-50% hover:via-[#acfa70] hover:via-70% hover:to-[#88e23b] hover:shadow-xl hover:shadow-[#88e23b];
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --foreground-rgb: 255, 255, 255;
+      --background-start-rgb: 0, 0, 0;
+      --background-end-rgb: 0, 0, 0;
+    }
   }
 }

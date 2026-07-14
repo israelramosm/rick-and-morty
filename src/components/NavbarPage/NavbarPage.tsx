@@ -3,7 +3,7 @@ import { IMAGE_PATH } from "@/src/util/constants";
 import ROUTES from "@/src/util/routes";
 import { DeepPartial } from "@/src/util/types";
 import {
-  FlowbiteNavbarTheme,
+  NavbarTheme,
   Navbar,
   NavbarBrand,
   NavbarCollapse,
@@ -13,12 +13,12 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
-const customNavbarTheme: DeepPartial<FlowbiteNavbarTheme> = {
+const customNavbarTheme: DeepPartial<NavbarTheme> = {
   root: {
     base: "p-4 dark:bg-gray-800 md:flex md:items-center md:justify-between",
   },
   brand: {
-    base: "relative w-[2.25rem]",
+    base: "relative w-9",
   },
 };
 
@@ -27,7 +27,7 @@ const NavbarPage = () => (
     <NavbarBrand as={Link} href="/">
       <Image
         src={`${IMAGE_PATH}/images/logo.jpg`}
-        className="rounded"
+        className="rounded-sm"
         alt="Home page"
         sizes="(max-width: 2.25rem) 2.25rem"
         fill

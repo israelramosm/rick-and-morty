@@ -1,12 +1,12 @@
 import { DeepPartial } from "@/src/util/types";
 import {
-  FlowbiteFooterTheme,
+  FooterTheme,
   Footer,
   FooterLink,
   FooterLinkGroup,
 } from "flowbite-react";
 
-const customFooterTheme: DeepPartial<FlowbiteFooterTheme> = {
+const customFooterTheme: DeepPartial<FooterTheme> = {
   root: {
     base: "mx-auto container border-solid border-2 w-full bg-white dark:bg-gray-800 md:flex md:items-center md:justify-center",
   },

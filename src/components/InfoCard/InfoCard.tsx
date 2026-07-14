@@ -1,3 +1,4 @@
+"use client";
 import { Card } from "flowbite-react";
 import Image from "next/image";
 import { ReactNode } from "react";
@@ -13,7 +14,7 @@ export function InfoCard({
 }) {
   return (
     <Card
-      className={`group max-w-[15rem] cursor-pointer m-4 rounded-t-3xl portal`}
+      className={`group max-w-60 cursor-pointer m-4 rounded-t-3xl portal`}
       renderImage={() => (
         <Image
           width={250}
