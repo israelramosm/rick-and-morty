@@ -4,62 +4,36 @@ import ShowCardEpisodes from "@/src/components/InfoCard/ShowCardEpisodes";
 import ShowCardLocation from "@/src/components/InfoCard/ShowCardLocation";
 import PageHeader from "@/src/components/PageHeader/PageHeader";
 import Section from "@/src/components/Section/Section";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import { CustomPagination } from "@/src/components/CustomPagination/CustomPagination";
 import RickAndMortyAPIResponse from "@/src/models/api/rickAndMorty/RickAndMortyAPIResponse";
 import CharacterI from "@/src/models/character/CharacterI";
 import CharacterT from "@/src/models/character/CharacterT";
 import { Spinner } from "flowbite-react";
+import { useFetch } from "@/src/hooks/useFetch";
+
+const CHARACTERS_URL = "https://rickandmortyapi.com/api/character";
+
+const toCharacter = (character: CharacterI): CharacterT => ({
+  id: character.id,
+  name: character.name,
+  episodes: character.episode.map((episode) => episode.split("/").at(-1) ?? ""),
+  image: character.image,
+  location: character.location.name,
+});
 
 export default function Characters() {
-  const [characters, setCharacters] = useState<Array<CharacterT>>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-
-  const fethCharacters = async (params?: {
-    [key: string]: string | number;
-  }) => {
-    try {
-      const { data } = await axios.get<RickAndMortyAPIResponse<CharacterI>>(
-        "https://rickandmortyapi.com/api/character",
-        { params }
-      );
-      const results = data.results.map<CharacterT>((character) => ({
-        id: character.id,
-        name: character.name,
-        episodes: character.episode.map((e) => e.split("/").reverse()[0]),
-        image: character.image,
-        location: character.location.name,
-      }));
-      setTotalPages(data.info.pages);
-      setCharacters(results);
-    } catch (error: any) {
-      setError(error.message);
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { data, loading, error, fetchData } = useFetch<
+    RickAndMortyAPIResponse<CharacterI>
+  >(CHARACTERS_URL);
+  const characters = data?.results.map(toCharacter) ?? [];
+  const totalPages = data?.info.pages ?? 1;
 
   const onPageChange = (page: number) => {
-    const params = {
-      page,
-    };
-    setLoading(true);
     setCurrentPage(page);
-    fethCharacters(params);
+    void fetchData({ page });
   };
-
-  useEffect(() => {
-    // Client-side data fetch on mount. setState only runs after the async
-    // request resolves (never synchronously), so it cannot trigger a render
-    // loop; the set-state-in-effect rule over-reports this valid pattern.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    fethCharacters();
-  }, []);
 
   return (
     <Section id="main" className="h-full flex flex-col justify-evenly">
@@ -69,22 +43,25 @@ export default function Characters() {
           <Spinner aria-label="Extra large spinner example" size="xl" />
         )}
         {error !== "" && <p>{error}</p>}
-        {characters &&
-          characters.map((character, i) => (
-            <InfoCard key={i} name={character.name} image={character.image}>
-              <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white group-hover:text-white">
-                {character.name}
-              </h5>
-              <ShowCardLocation
-                location={character.location}
-                classText="group-hover:text-white"
-              />
-              <ShowCardEpisodes
-                episodes={character.episodes}
-                classText="group-hover:text-white"
-              />
-            </InfoCard>
-          ))}
+        {characters.map((character) => (
+          <InfoCard
+            key={character.id}
+            name={character.name}
+            image={character.image}
+          >
+            <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white group-hover:text-white">
+              {character.name}
+            </h5>
+            <ShowCardLocation
+              location={character.location}
+              classText="group-hover:text-white"
+            />
+            <ShowCardEpisodes
+              episodes={character.episodes}
+              classText="group-hover:text-white"
+            />
+          </InfoCard>
+        ))}
       </div>
       <CustomPagination
         onPageChange={onPageChange}
