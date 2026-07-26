@@ -9,8 +9,10 @@ import { CustomPagination } from "@/src/components/CustomPagination/CustomPagina
 import RickAndMortyAPIResponse from "@/src/models/api/rickAndMorty/RickAndMortyAPIResponse";
 import CharacterI from "@/src/models/character/CharacterI";
 import CharacterT from "@/src/models/character/CharacterT";
-import { Spinner } from "flowbite-react";
 import { useFetch } from "@/src/hooks/useFetch";
+import { CardGrid } from "@/src/components/CardGrid/CardGrid";
+import { CardSkeletonGrid } from "@/src/components/CardSkeleton/CardSkeleton";
+import { StatusBadge } from "@/src/components/StatusBadge/StatusBadge";
 
 const CHARACTERS_URL = "https://rickandmortyapi.com/api/character";
 
@@ -20,6 +22,7 @@ const toCharacter = (character: CharacterI): CharacterT => ({
   episodes: character.episode.map((episode) => episode.split("/").at(-1) ?? ""),
   image: character.image,
   location: character.location.name,
+  status: character.status,
 });
 
 export default function Characters() {
@@ -38,31 +41,29 @@ export default function Characters() {
   return (
     <Section id="main" className="h-full flex flex-col justify-evenly">
       <PageHeader title="Characters" />
-      <div className="flex flex-wrap justify-around">
-        {loading && (
-          <Spinner aria-label="Extra large spinner example" size="xl" />
+      {error !== "" && <p>{error}</p>}
+      <CardGrid>
+        {loading ? (
+          <CardSkeletonGrid withImage />
+        ) : (
+          characters.map((character) => (
+            <InfoCard
+              key={character.id}
+              name={character.name}
+              image={character.image}
+            >
+              <div className="flex items-center gap-2">
+                <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  {character.name}
+                </h5>
+                <StatusBadge status={character.status} />
+              </div>
+              <ShowCardLocation location={character.location} />
+              <ShowCardEpisodes episodes={character.episodes} />
+            </InfoCard>
+          ))
         )}
-        {error !== "" && <p>{error}</p>}
-        {characters.map((character) => (
-          <InfoCard
-            key={character.id}
-            name={character.name}
-            image={character.image}
-          >
-            <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white group-hover:text-white">
-              {character.name}
-            </h5>
-            <ShowCardLocation
-              location={character.location}
-              classText="group-hover:text-white"
-            />
-            <ShowCardEpisodes
-              episodes={character.episodes}
-              classText="group-hover:text-white"
-            />
-          </InfoCard>
-        ))}
-      </div>
+      </CardGrid>
       <CustomPagination
         onPageChange={onPageChange}
         totalPages={totalPages}

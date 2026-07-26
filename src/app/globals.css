@@ -45,21 +45,41 @@
 }
 
 @utility portal {
-  @apply hover:bg-linear-to-r hover:from-[#88e23b] hover:via-[#acfa70] hover:via-30% hover:via-[#69e882] hover:via-50% hover:via-[#acfa70] hover:via-70% hover:to-[#88e23b] hover:shadow-xl hover:shadow-[#88e23b];
+  @apply transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#3fb63f]/30 hover:ring-2 hover:ring-[#3fb63f];
 }
 
 @layer utilities {
   :root {
-    --foreground-rgb: 0, 0, 0;
-    --background-start-rgb: 214, 219, 220;
+    --foreground-rgb: 17, 24, 39;
+    --background-start-rgb: 244, 247, 245;
     --background-end-rgb: 255, 255, 255;
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --foreground-rgb: 255, 255, 255;
-      --background-start-rgb: 0, 0, 0;
-      --background-end-rgb: 0, 0, 0;
+      --foreground-rgb: 237, 242, 238;
+      --background-start-rgb: 10, 15, 12;
+      --background-end-rgb: 3, 6, 4;
     }
+  }
+}
+
+@layer base {
+  body {
+    color: rgb(var(--foreground-rgb));
+    background-color: rgb(var(--background-end-rgb));
+    background-image:
+      radial-gradient(
+        circle at 50% 0%,
+        rgba(63, 182, 63, 0.08),
+        transparent 55%
+      ),
+      linear-gradient(
+        to bottom,
+        rgb(var(--background-start-rgb)),
+        rgb(var(--background-end-rgb))
+      );
+    background-attachment: fixed;
+    min-height: 100vh;
   }
 }
