@@ -1,6 +1,4 @@
 import Link from "next/link";
-import PageHeader from "@/src/components/PageHeader/PageHeader";
-import Section from "@/src/components/Section/Section";
 import { EpisodeDetail } from "@/src/components/EpisodeDetail/EpisodeDetail";
 
 export default async function EpisodePage({
@@ -11,12 +9,14 @@ export default async function EpisodePage({
   const { id } = await params;
 
   return (
-    <Section id="main" className="flex flex-col">
-      <PageHeader title="Episode" />
-      <Link href="/episodes" className="mb-4 text-[#3fb63f] hover:underline">
-        ← Volver
+    <div>
+      <Link
+        href="/episodes"
+        className="mb-4 inline-block text-sm text-gray-500 hover:underline dark:text-gray-400"
+      >
+        ✕ Cerrar
       </Link>
       <EpisodeDetail id={id} />
-    </Section>
+    </div>
   );
 }

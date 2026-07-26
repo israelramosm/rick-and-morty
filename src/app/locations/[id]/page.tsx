@@ -1,6 +1,4 @@
 import Link from "next/link";
-import PageHeader from "@/src/components/PageHeader/PageHeader";
-import Section from "@/src/components/Section/Section";
 import LocationDetail from "@/src/components/LocationDetail/LocationDetail";
 
 export default async function LocationPage({
@@ -11,15 +9,14 @@ export default async function LocationPage({
   const { id } = await params;
 
   return (
-    <Section id="main" className="flex flex-col">
-      <PageHeader title="Location" />
+    <div>
       <Link
         href="/locations"
-        className="mb-4 inline-block text-gray-700 hover:underline dark:text-gray-300"
+        className="mb-4 inline-block text-sm text-gray-500 hover:underline dark:text-gray-400"
       >
-        ← Volver
+        ✕ Cerrar
       </Link>
       <LocationDetail id={id} />
-    </Section>
+    </div>
   );
 }

@@ -1,6 +1,4 @@
 import Link from "next/link";
-import PageHeader from "@/src/components/PageHeader/PageHeader";
-import Section from "@/src/components/Section/Section";
 import { CharacterDetail } from "@/src/components/CharacterDetail/CharacterDetail";
 
 export default async function CharacterPage({
@@ -11,12 +9,14 @@ export default async function CharacterPage({
   const { id } = await params;
 
   return (
-    <Section id="main" className="flex flex-col">
-      <PageHeader title="Character" />
-      <Link href="/characters" className="mb-4 inline-block underline">
-        ← Volver
+    <div>
+      <Link
+        href="/characters"
+        className="mb-4 inline-block text-sm text-gray-500 hover:underline dark:text-gray-400"
+      >
+        ✕ Cerrar
       </Link>
       <CharacterDetail id={id} />
-    </Section>
+    </div>
   );
 }
