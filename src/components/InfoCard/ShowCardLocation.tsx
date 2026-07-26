@@ -1,9 +1,13 @@
+import Link from "next/link";
+
 const ShowCardLocation = ({
   location,
+  locationId,
   className,
-  classText
+  classText,
 }: {
   location: string;
+  locationId?: string;
   className?: string;
   classText?: string;
 }) => (
@@ -11,7 +15,16 @@ const ShowCardLocation = ({
     <p className={`font-bold text-gray-700 dark:text-gray-400 ${classText}`}>
       Last location:
     </p>
-    <p className={`font-normal text-gray-700 dark:text-gray-400 ${classText}`}>{location}</p>
+    {locationId ? (
+      <Link
+        href={`/locations/${locationId}`}
+        className={`font-normal text-gray-700 underline dark:text-gray-400 ${classText}`}
+      >
+        {location}
+      </Link>
+    ) : (
+      <p className={`font-normal text-gray-700 dark:text-gray-400 ${classText}`}>{location}</p>
+    )}
   </div>
 );
 

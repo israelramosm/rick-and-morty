@@ -13,15 +13,17 @@ import { useFetch } from "@/src/hooks/useFetch";
 import { CardGrid } from "@/src/components/CardGrid/CardGrid";
 import { CardSkeletonGrid } from "@/src/components/CardSkeleton/CardSkeleton";
 import { StatusBadge } from "@/src/components/StatusBadge/StatusBadge";
+import { getIdFromResourceUrl } from "@/src/util/rick-and-morty";
 
 const CHARACTERS_URL = "https://rickandmortyapi.com/api/character";
 
 const toCharacter = (character: CharacterI): CharacterT => ({
   id: character.id,
   name: character.name,
-  episodes: character.episode.map((episode) => episode.split("/").at(-1) ?? ""),
+  episodes: character.episode.map((episode) => getIdFromResourceUrl(episode)),
   image: character.image,
   location: character.location.name,
+  locationId: getIdFromResourceUrl(character.location.url),
   status: character.status,
 });
 
@@ -51,6 +53,7 @@ export default function Characters() {
               key={character.id}
               name={character.name}
               image={character.image}
+              href={`/characters/${character.id}`}
             >
               <div className="flex items-center gap-2">
                 <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -58,7 +61,10 @@ export default function Characters() {
                 </h5>
                 <StatusBadge status={character.status} />
               </div>
-              <ShowCardLocation location={character.location} />
+              <ShowCardLocation
+                location={character.location}
+                locationId={character.locationId}
+              />
               <ShowCardEpisodes episodes={character.episodes} />
             </InfoCard>
           ))

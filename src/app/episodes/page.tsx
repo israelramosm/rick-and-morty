@@ -11,9 +11,11 @@ import RickAndMortyAPIResponse from "@/src/models/api/rickAndMorty/RickAndMortyA
 import EpisodeI from "@/src/models/episode/EpisodeI";
 import EpisodeT from "@/src/models/episode/EpisodeT";
 import { Badge } from "flowbite-react";
+import Link from "next/link";
 import { useFetch } from "@/src/hooks/useFetch";
 import { CardGrid } from "@/src/components/CardGrid/CardGrid";
 import { CardSkeletonGrid } from "@/src/components/CardSkeleton/CardSkeleton";
+import { IMAGE_PATH } from "@/src/util/constants";
 
 const EPISODES_URL = "https://rickandmortyapi.com/api/episode";
 
@@ -47,17 +49,23 @@ export default function Episodes() {
           <CardSkeletonGrid />
         ) : (
           episodes.map((episode) => (
-            <DetailCard
+            <Link
               key={episode.id}
-              title={episode.name}
-              badge={<Badge color="green">{episode.code}</Badge>}
+              href={`/episodes/${episode.id}`}
+              className="contents"
             >
-              <DetailRow label="Air date:" value={episode.airDate} />
-              <DetailRow
-                label="Characters:"
-                value={episode.charactersCount}
-              />
-            </DetailCard>
+              <DetailCard
+                title={episode.name}
+                badge={<Badge color="green">{episode.code}</Badge>}
+                image={`${IMAGE_PATH}/images/episodes.jpg`}
+              >
+                <DetailRow label="Air date:" value={episode.airDate} />
+                <DetailRow
+                  label="Characters:"
+                  value={episode.charactersCount}
+                />
+              </DetailCard>
+            </Link>
           ))
         )}
       </CardGrid>

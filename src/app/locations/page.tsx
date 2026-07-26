@@ -6,6 +6,7 @@ import {
 import PageHeader from "@/src/components/PageHeader/PageHeader";
 import Section from "@/src/components/Section/Section";
 import { useState } from "react";
+import Link from "next/link";
 import { CustomPagination } from "@/src/components/CustomPagination/CustomPagination";
 import RickAndMortyAPIResponse from "@/src/models/api/rickAndMorty/RickAndMortyAPIResponse";
 import LocationI from "@/src/models/location/LocationI";
@@ -13,6 +14,7 @@ import LocationT from "@/src/models/location/LocationT";
 import { useFetch } from "@/src/hooks/useFetch";
 import { CardGrid } from "@/src/components/CardGrid/CardGrid";
 import { CardSkeletonGrid } from "@/src/components/CardSkeleton/CardSkeleton";
+import { IMAGE_PATH } from "@/src/util/constants";
 
 const LOCATIONS_URL = "https://rickandmortyapi.com/api/location";
 
@@ -46,14 +48,26 @@ export default function Locations() {
           <CardSkeletonGrid />
         ) : (
           locations.map((location) => (
-            <DetailCard key={location.id} title={location.name}>
-              <DetailRow label="Type:" value={location.type || "Unknown"} />
-              <DetailRow
-                label="Dimension:"
-                value={location.dimension || "Unknown"}
-              />
-              <DetailRow label="Residents:" value={location.residentsCount} />
-            </DetailCard>
+            <Link
+              key={location.id}
+              href={`/locations/${location.id}`}
+              className="contents"
+            >
+              <DetailCard
+                title={location.name}
+                image={`${IMAGE_PATH}/images/locations.jpg`}
+              >
+                <DetailRow label="Type:" value={location.type || "Unknown"} />
+                <DetailRow
+                  label="Dimension:"
+                  value={location.dimension || "Unknown"}
+                />
+                <DetailRow
+                  label="Residents:"
+                  value={location.residentsCount}
+                />
+              </DetailCard>
+            </Link>
           ))
         )}
       </CardGrid>
