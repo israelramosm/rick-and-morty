@@ -12,9 +12,11 @@ const remotePatterns = [
 ];
 
 const nextConfig = {
+  output: "export",
   basePath: "/rick-and-morty",
   images: {
     remotePatterns,
+    unoptimized: true,
   },
 };
 

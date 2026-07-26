@@ -1,5 +1,11 @@
 import Link from "next/link";
 import { CharacterDetail } from "@/src/components/CharacterDetail/CharacterDetail";
+import { getAllResourceIds } from "@/src/util/rick-and-morty";
+
+export async function generateStaticParams() {
+  const ids = await getAllResourceIds("character");
+  return ids.map((id) => ({ id }));
+}
 
 export default async function CharacterPage({
   params,

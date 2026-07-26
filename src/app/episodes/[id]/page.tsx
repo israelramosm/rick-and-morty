@@ -1,5 +1,11 @@
 import Link from "next/link";
 import { EpisodeDetail } from "@/src/components/EpisodeDetail/EpisodeDetail";
+import { getAllResourceIds } from "@/src/util/rick-and-morty";
+
+export async function generateStaticParams() {
+  const ids = await getAllResourceIds("episode");
+  return ids.map((id) => ({ id }));
+}
 
 export default async function EpisodePage({
   params,
